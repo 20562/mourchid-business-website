@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mourchid Business - Services d'Impression Numérique</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Variables de couleurs basées sur votre logo */
+        :root {
+            --primary-blue: #0039a6;
+            --dark-blue: #001f54;
+            --accent-yellow: #ffd700;
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f9f9f9;
+            --bg-gray: #f1f1f1;
+        }
+        
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            height: 60px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--text-light);
+            text-align: center;
+            padding: 150px 20px 100px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e6c200;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-blue);
+            margin: 15px auto 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background-color: var(--primary-blue);
+            color: white;
+            font-size: 2rem;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--bg-gray);
+            padding: 80px 20px;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-blue);
+            margin-top: 10px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info, .contact-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3, .contact-form h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+        }
+        
+        .submit-button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-button:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-yellow);
+        }
+        
+        .footer-info p {
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 4%;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-content {
+                flex: none;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 3%;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                background-color: #fff;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 15px 2%;
+            }
+            
+            .logo {
+                height: 50px;
+            }
+            
+            .hero {
+                padding: 130px 15px 80px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-button {
+                padding: 10px 25px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <img src="LOGO 1.jpg" alt="Mourchid Business Logo" class="logo">
+            <ul class="nav-menu">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Bienvenue chez Mourchid Business !</h1>
+        <p>Votre guichet unique pour tous vos besoins en impression numérique. Avec une expertise de premier plan et une gamme complète de services, nous sommes là pour transformer vos idées en réalité.</p>
+        <a href="#contact" class="cta-button">Contactez-nous</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-copy"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Photocopie</h3>
+                    <p>Service de photocopie rapide et efficace pour tous vos documents personnels et professionnels.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-scanner"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Numérisation</h3>
+                    <p>Numérisation de documents de haute qualité pour préserver et partager vos informations importantes.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-print"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Impression</h3>
+                    <p>Impression professionnelle pour tous vos documents et projets, avec une finition impeccable.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Cartes de Visite</h3>
+                    <p>Conception et impression de cartes de visite professionnelles qui feront une impression durable.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-id-badge"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Badges</h3>
+                    <p>Fabrication de badges personnalisés pour vos événements, entreprises ou institutions.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tag"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Étiquettes</h3>
+                    <p>Étiquettes sur mesure pour vos produits, avec un design adapté à votre marque.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Flyers</h3>
+                    <p>Flyers accrocheurs pour promouvoir efficacement votre entreprise ou vos événements.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-sticky-note"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Autocollants</h3>
+                    <p>Autocollants personnalisés pour diverses applications, avec une large gamme de tailles et formats.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Plastification</h3>
+                    <p>Plastification pour protéger vos documents importants contre l'eau, la poussière et l'usure.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Porte-clés</h3>
+                    <p>Fabrication de porte-clés personnalisés pour promotions ou cadeaux d'entreprise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="LOGO 3.jpg" alt="Notre Entreprise">
+            </div>
+            <div class="about-content">
+                <h2>À Propos de Nous</h2>
+                <p>Chez Mourchid Business, nous comprenons l'importance de la qualité, de la précision et de la rapidité. Notre équipe dévouée est prête à répondre à tous vos besoins en matière d'impression numérique.</p>
+                <p>Fondée sur les principes d'excellence et de service client, notre entreprise s'engage à fournir des solutions d'impression de haute qualité qui répondent parfaitement à vos attentes.</p>
+                <p>Avec des équipements modernes et une expertise approfondie, nous sommes fiers de transformer vos idées en réalité et de contribuer au succès de vos projets professionnels.</p>
+                <p>Mourchid Business - Où l'imagination prend vie !</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contactez-Nous</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Nos Coordonnées</h3>
+                <p><i class="fas fa-phone"></i> 78 428 27 76</p>
+                <p><i class="fas fa-envelope"></i> contact@mourchidbusiness.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Adresse de votre entreprise</p>
+                <p><i class="fas fa-clock"></i> Lundi - Samedi: 9h00 - 18h00</p>
+                <p><i class="fas fa-clock"></i> Dimanche: Fermé</p>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Envoyez-nous un Message</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="LOGO 2.jpg" alt="Mourchid Business Logo" class="footer-logo">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="footer-info">
+                <p>78 428 27 76</p>
+                <p>contact@mourchidbusiness.com</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Mourchid Business. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a nav link
+            document.querySelectorAll('.nav-menu a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 90;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
